@@ -23,10 +23,10 @@ func perebor(slc []string) bool {
 	operation := []string{"+", "-", "/", "*"}
 
 	if len(slc) < 3 {
-		log.Fatalln("Вывод ошибки, так как строка не является математической операцией.")
+		log.Fatalln("должно быть 3 символа через пробел")
 		return false
 	} else if len(slc) > 3 {
-		log.Println("Вывод ошибки, так как формат математической операции не удовлетворяет заданию — два операнда и один оператор (+, -, /, *).")
+		log.Println("не больше 3х символов")
 		return false
 	}
 	for _, s := range operation {
@@ -52,7 +52,7 @@ func perebor(slc []string) bool {
 	if rm == 2 || arab == 2 && operand != "" {
 		bl = true
 	} else {
-		log.Println("Вывод ошибки, так как используются одновременно разные системы счисления.")
+		log.Println("одновременно используются римские и арабские")
 		return false
 	}
 	return bl
@@ -68,27 +68,27 @@ func calc(slcInput []string) string {
 			if slcInput[1] == "+" {
 				num1, err := romans.RtoA(slcInput[0])
 				if err != nil {
-					log.Fatalln("Ошибка конвертации")
+					log.Fatalln("Error")
 				}
 				num2, err := romans.RtoA(slcInput[2])
 				if err != nil {
-					log.Fatalln("Ошибка конвертации")
+					log.Fatalln("Error")
 				}
 				sum := num1 + num2
 				return romans.AtoR(sum)
 			} else if slcInput[1] == "-" {
 				num1, err := romans.RtoA(slcInput[0])
 				if err != nil {
-					log.Fatalln("Ошибка конвертации")
+					log.Fatalln("Error")
 				}
 				num2, err := romans.RtoA(slcInput[2])
 				if err != nil {
-					log.Fatalln("Ошибка конвертации")
+					log.Fatalln("Error")
 				}
 
 				sum := int(num1) - int(num2)
 				if sum < 0 {
-					return "Рим не может быть < 0"
+					return "рим < 0"
 				}
 
 				return romans.AtoR(uint(sum))
@@ -96,19 +96,19 @@ func calc(slcInput []string) string {
 			} else if slcInput[1] == "*" {
 				num1, err := romans.RtoA(slcInput[0])
 				if err != nil {
-					log.Fatalln("Ошибка конвертации")
+					log.Fatalln("Error")
 				}
 				num2, err := romans.RtoA(slcInput[2])
 
 				if err != nil {
-					log.Fatalln("Ошибка конвертации")
+					log.Fatalln("Error")
 				}
 				sum := num1 * num2
 				return romans.AtoR(sum)
 			} else if slcInput[1] == "/" {
 				num1, err := romans.RtoA(slcInput[0])
 				if err != nil {
-					log.Fatalln("Ошибка конвертации")
+					log.Fatalln("Error")
 				}
 				num2, err := romans.RtoA(slcInput[2])
 				sum := num1 / num2
@@ -120,44 +120,44 @@ func calc(slcInput []string) string {
 					if slcInput[1] == "-" {
 						res, err := strconv.Atoi(slcInput[0])
 						if err != nil {
-							log.Fatalln("Ошибка конвертации")
+							log.Fatalln("Error")
 						}
 						res2, err := strconv.Atoi(slcInput[2])
 						if err != nil {
-							log.Fatalln("Ошибка конвертации")
+							log.Fatalln("Error")
 						}
 						sum := res - res2
 						return strconv.Itoa(sum)
 					} else if slcInput[1] == "+" {
 						res, err := strconv.Atoi(slcInput[0])
 						if err != nil {
-							log.Fatalln("Ошибка конвертации")
+							log.Fatalln("Error")
 						}
 						res2, err := strconv.Atoi(slcInput[2])
 						if err != nil {
-							log.Fatalln("Ошибка конвертации")
+							log.Fatalln("Error")
 						}
 						sum := res + res2
 						return strconv.Itoa(sum)
 					} else if slcInput[1] == "*" {
 						res, err := strconv.Atoi(slcInput[0])
 						if err != nil {
-							log.Fatalln("Ошибка конвертации")
+							log.Fatalln("Error")
 						}
 						res2, err := strconv.Atoi(slcInput[2])
 						if err != nil {
-							log.Fatalln("Ошибка конвертации")
+							log.Fatalln("Error")
 						}
 						sum := res * res2
 						return strconv.Itoa(sum)
 					} else if slcInput[1] == "/" {
 						res, err := strconv.Atoi(slcInput[0])
 						if err != nil {
-							log.Fatalln("Ошибка конвертации")
+							log.Fatalln("Error")
 						}
 						res2, err := strconv.Atoi(slcInput[2])
 						if err != nil {
-							log.Fatalln("Ошибка конвертации")
+							log.Fatalln("Error")
 						}
 						sum := res / res2
 						return strconv.Itoa(sum)
@@ -169,7 +169,7 @@ func calc(slcInput []string) string {
 		}
 
 	}
-	return "Что-то пошло не так"
+	return "Error"
 
 }
 
